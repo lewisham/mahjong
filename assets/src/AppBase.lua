@@ -38,6 +38,7 @@ function AppBase:play(co)
     if device:isWindows() then self:createScene("STools") end
     self:createScene("SSystem")
     self:createScene("SAutoUpdate"):play(co, GetChannelInfo().url)
+    ReloadLua("SrcLuaPath")
     self:runScene("SBattle")
 end
 

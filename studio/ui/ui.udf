@@ -36,8 +36,9 @@
           <FilePathData Path="ui/battle/Dice.csd" />
           <FilePathData Path="ui/battle/BattlePanel.csd" />
           <FilePathData Path="ui/battle/Decision.csd" />
+          <FilePathData Path="ui/battle/BattleSetting.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="ui/battle/BattlePanel.csd" />
+        <ActiveDocument Path="ui/battle/BattleSetting.csd" />
       </Value>
     </Item>
   </Properties>

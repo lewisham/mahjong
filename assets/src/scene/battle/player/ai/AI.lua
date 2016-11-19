@@ -46,7 +46,7 @@ function AI:init()
     self:set("s1", tb)
 end
 
-function AI:calc(co, cards)
+function AI:calc(cards)
     local suits = {{}, {}, {}, {}}
     for _, val in ipairs(cards) do
         val.value = 0
@@ -83,14 +83,13 @@ function AI:calc(co, cards)
 end
 
 -- 打牌ai
-function AI:discard(co, cards)
-    self:calc(co, cards)
-    WaitForSeconds(co, 0.5)
+function AI:discard(cards)
+    self:calc(cards) 
     return cards[1]
 end
 
 function AI:pong(co, cards, card)
-    self:calc(co, cards)
+    self:calc(cards)
     local cnt = 0
     for _, val in ipairs(cards) do
         if IsTileEqual(val, card) then

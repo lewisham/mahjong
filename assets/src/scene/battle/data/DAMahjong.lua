@@ -130,7 +130,7 @@ function DAMahjong:getRascal()
 end
 
 function DAMahjong:deal(seat, cnt)
-    local go = self:findGameObject("DAPlayers"):getPlayer(seat)
+    local go = self:findGameObject("DAPlayers"):findPlayer(seat)
     local tb = {}
     for i = 1, cnt do
         local tile = self:getNext()

@@ -14,6 +14,8 @@
               <Image Name="btn_peng.png" />
               <Image Name="btn_peng_cs.png" />
               <Image Name="btn_peng_cs_dis.png" />
+              <Image Name="btn_return.png" />
+              <Image Name="btn_setting.png" />
               <Image Name="btn_win.png" />
               <Image Name="btn_win_cs.png" />
               <Image Name="btn_win_cs_dis.png" />
@@ -23,8 +25,15 @@
               <Image Name="turn_pos_3.png" />
               <Image Name="turn_pos_bg.png" />
               <Image Name="zhuomianditu012.png" />
-              <Image Name="btn_return.png" />
-              <Image Name="btn_setting.png" />
+              <Image Name="setting_max_music_sign_new.png" />
+              <Image Name="setting_max_sound_sign_new.png" />
+              <Image Name="setting_min_music_sign_new.png" />
+              <Image Name="setting_min_sound_sign_new.png" />
+              <Image Name="shop_bg2.png" />
+              <Image Name="setting_title_new.png" />
+              <Image Name="laoyue_btn.png" />
+              <Image Name="login_btn_checkbox.png" />
+              <Image Name="login_check_mark.png" />
             </Folder>
             <Folder Name="dice">
               <Image Name="dice_1.png" />
@@ -222,6 +231,7 @@
             <Project Name="BattleScene.csd" Type="Layer" />
             <Project Name="Decision.csd" Type="Layer" />
             <Project Name="Dice.csd" Type="Layer" />
+            <Project Name="BattleSetting.csd" Type="Layer" />
           </Folder>
           <Folder Name="../main">
             <Folder Name="city">

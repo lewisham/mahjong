@@ -11,6 +11,22 @@ function PlayerCard:onCreate()
     self:findGameObject("UITable"):addChild(self, 1)
 end
 
+function PlayerCard:play(co)
+    self:set("drop_card", nil)
+    local time = 0
+    while true do
+        if self:get("drop_card") then break end
+        WaitForFrames(co, 1)
+        time = time + 0.02
+        if time > 6.0 or self:getGameObject():get("robot") then
+            local card = self:getGameObject():aiDiscard()
+            self:set("drop_card", card)
+            break
+        end
+    end
+    return self:get("drop_card")
+end
+
 function PlayerCard:getDisplayDir()
     return self:getGameObject():get("display_dir")
 end
@@ -157,7 +173,7 @@ end
 function PlayerCard:onSelectTile(sender)
     if self:getGameObject():get("turn") then
         if sender:getPositionY() > 70 then
-            self:getGameObject():set("card", sender.data)
+            self:set("drop_card", sender.data)
             return
         end
     end

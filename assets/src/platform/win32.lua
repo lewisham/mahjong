@@ -79,6 +79,7 @@ function PulishToCurrent()
     end
 	SaveFileList("CheckFileList.txt", list)
     print("PulishToCurrent success")
+    Toast("发布本地md5成功")
 end
 
 cc.FileUtils:getInstance():setWritablePath("../../write/")

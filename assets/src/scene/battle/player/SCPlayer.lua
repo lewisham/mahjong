@@ -74,16 +74,21 @@ function SCPlayer:play(co)
     return self:afterDraw(co)
 end
 
+function SCPlayer:aiDiscard()
+    return self:getComponent("AI"):discard(self:get("tiles"))
+end
+
 function SCPlayer:discard(co)
     WaitForFrames(co, 1)
     self:set("card", nil)
     self:set("turn", true)
+    local card = nil
     if self:get("robot") then
-        local card = self:getComponent("AI"):discard(co, self:get("tiles"))
-        self:set("card", card)
+        card = self:aiDiscard()
+        WaitForSeconds(co, 0.5)
+    else
+        card = self:getComponent("PlayerCard"):play(co) 
     end
-    WaitForFuncResult(co, function() return self:get("card") end)
-    local card = self:get("card")
     self:set("turn", false)
     self:doDiscard(card)
     self:getComponent("PlayerCard"):removeCard(card)

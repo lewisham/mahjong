@@ -7,7 +7,15 @@
 UIBase = class("UIBase", NodeBase)
 
 function UIBase:init(...)
-	self.mRoot:addChild(self)
+    self:addTo(self:getParent(), self:getZorder())
 	self:onCreate(...)
+end
+
+function UIBase:getParent()
+    return self.mRoot
+end
+
+function UIBase:getZorder()
+    return 0
 end
 

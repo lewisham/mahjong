@@ -55,7 +55,7 @@ function SBattle:loop(co)
         if self:findGameObject("DAMahjong"):isOver() then
             break
         end
-        local player = self:findGameObject("DAPlayers"):getPlayer(idx)
+        local player = self:findGameObject("DAPlayers"):findPlayer(idx)
         self:findGameObject("UITable"):onTurn(player)
         card = player:play(co)
         while card do

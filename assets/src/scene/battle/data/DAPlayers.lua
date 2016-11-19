@@ -24,18 +24,22 @@ function DAPlayers:createPlayers()
     for i = 1, 4 do
         local go = self:createUniqueObject("SCPlayer", i, dirs[i])
         self:get("player_list")[i] = go
-        go:set("robot", i ~= 1)
-        --go:set("robot", true)
+        go:set("robot", true)
     end
+    self:getPlayer():set("robot", false)
 end
 
-function DAPlayers:getPlayer(seat)
+function DAPlayers:findPlayer(seat)
     return self:get("player_list")[seat]
 end
 
 -- 庄家
 function DAPlayers:getDealer()
     return self:get("player_list")[self:get("dealer")]
+end
+
+function DAPlayers:getPlayer()
+    return self:get("player_list")[1]
 end
 
 function DAPlayers:sortTiles()
@@ -50,7 +54,7 @@ function DAPlayers:afterDiscard(idx, card)
         if idx > 4 then
             idx = 1
         end
-        local player = self:getPlayer(idx)
+        local player = self:findPlayer(idx)
         if player:get("seat") ~= card.drop_from then
             local cnt = player:calcCardCount(card)
             if cnt >= 2 then
