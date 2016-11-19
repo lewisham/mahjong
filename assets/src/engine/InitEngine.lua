@@ -1,0 +1,16 @@
+require("src.engine.String")
+require("src.engine.LogHelper")
+require("src.engine.FileHelper")
+require("src.engine.TableToString")
+require("src.engine.LuaObject")
+require("src.engine.Coroutine")
+require("src.engine.CommonYieldType")
+
+require("GameScene")
+require("GameObject")
+require("Component")
+require("NodeBase")
+require("UIBase")
+require("ListViewHelper")
+require("CommonFunc")
+

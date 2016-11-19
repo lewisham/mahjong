@@ -1,0 +1,17 @@
+.vs/
+Release.win32/
+Debug.win32/
+obj/
+/runtime-src/proj.android/obj
+*.so
+*.dll
+*.suo
+*.db
+*.user
+*.filters
+*.obj
+*.o
+*.d
+*.sln
+mahjong.luaproj
+mahjong.config
