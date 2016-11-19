@@ -1,0 +1,37 @@
+<Solution>
+  <PropertyGroup Name="system" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="system">
+          <Folder Name="network">
+            <Image Name="net_waiting.png" />
+            <Project Name="NetWaitting.csd" Type="Layer" />
+          </Folder>
+          <Folder Name="system">
+            <Project Name="Dialog.csd" Type="Layer" />
+            <Project Name="SystemPanel.csd" Type="Layer" />
+            <Project Name="Toast.csd" Type="Layer" />
+          </Folder>
+          <Folder Name="tools">
+            <Project Name="ToolsMain.csd" Type="Layer" />
+            <Project Name="ToolsPanel.csd" Type="Layer" />
+          </Folder>
+          <Folder Name="update">
+            <Image Name="auto_update_loadingbar.png" />
+            <Image Name="auto_update_text.png" />
+            <Project Name="AutoUpdate.csd" Type="Layer" />
+          </Folder>
+          <Image Name="classbtn.png" />
+          <Image Name="common_botton_05.png" />
+          <Image Name="common_button_close_03.png" />
+          <Image Name="dialog_bg.png" />
+          <Image Name="dialog_line.png" />
+          <Image Name="public_bg_02.png" />
+          <Image Name="toast_bg.png" />
+        </Folder>
+        <TTF Name="heicu.TTF" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

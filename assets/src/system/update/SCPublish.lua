@@ -135,4 +135,48 @@ function SCPublish:old()
     print("发布资源成功")
 end
 
+
+-- 单文件更新方式
+function SCPublish:old()
+    assert(ASSETS_SEVER_PATH, "没有设置资源服路径")
+    cc.FileUtils:getInstance():createDirectory(ASSETS_SEVER_PATH)
+    local sDir = ""
+    local list = {}
+    local workDir = RunDosCmd("cd")[1]
+    for key, _ in io.popen('dir ' .. sDir .. ' /a-D/b/s'):lines() do
+        local filename = string.match(key, ".+\\([^\\]*%.%w+)$")
+        if filename ~= "CustomScript.lua" then
+			--print(filename)
+            local path = string.sub(key, #workDir + 2)
+            local pos = #path - #filename
+            local dir = string.sub(path, 1, pos)
+            local content = FileRead(path)
+            content = EncryptFile(filename, content)
+            local md5 = content:md5() or "0bytes"
+            local size = #content
+            local path1 = string.gsub(path, "\\", "/")
+            local abcd = {1, md5, path1, size}     
+            table.insert(list, abcd)
+            if dir ~= "" then
+                cc.FileUtils:getInstance():createDirectory(ASSETS_SEVER_PATH .. dir)
+				cc.FileUtils:getInstance():createDirectory(PRODUCT_PATH .. dir)
+            end
+			print(path)
+            FileWrite(ASSETS_SEVER_PATH..path, content)
+			FileWrite(PRODUCT_PATH..path, content)
+        else
+            print("skip file", filename)
+        end
+    end
+
+    -- 保存文件信息
+    SaveFileList(ASSETS_SEVER_PATH .. "CheckFileList.txt", list)
+	SaveFileList(PRODUCT_PATH .. "CheckFileList.txt", list)
+    -- 保存版本号
+    local versionId = tostring(os.time())
+    FileWrite(ASSETS_SEVER_PATH .. "CheckVersion.txt", versionId)
+	FileWrite(PRODUCT_PATH .. "CheckVersion.txt", versionId)
+    print("发布资源成功")
+end
+
 return SCPublish

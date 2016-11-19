@@ -40,6 +40,7 @@ function AppBase:play(co)
 	--self:createScene("SNetWork")
     --self:createScene("SAutoUpdate"):play(co, GetChannelInfo().url)
     --self:runScene("SMainHome")
+    --PulishToCurrent()
     self:runScene("SBattle")
 end
 
