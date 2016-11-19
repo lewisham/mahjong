@@ -78,6 +78,7 @@ function PulishToCurrent()
         end
     end
 	SaveFileList("CheckFileList.txt", list)
+    print("PulishToCurrent success")
 end
 
 cc.FileUtils:getInstance():setWritablePath("../../write/")

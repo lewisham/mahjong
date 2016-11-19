@@ -521,7 +521,7 @@
 1,cfe29c4945c28133d67e7fc6f084cf38,res/ui/main/shop/ui3_box.png,10477
 1,981370869329dca2ec231d894bab5da2,res/ui/main/shop/ui_frame_type1.png,21298
 1,52dbccb706ce8e833474bb763aab68f2,res/ui/main/shop/ui_top_type1.png,11794
-1,c20f8784bb94fdd35b010cb1ef5ba1ed,src/AppBase.lua,3055
+1,18b5a3baa4a20782d3d2264ec0350170,src/AppBase.lua,3086
 1,a15eefbf9f544f79cde0c4998ac19c6f,src/engine/CommonFunc.lua,5615
 1,bcae61dd8b1ec564c60e2b09db8a47e9,src/engine/CommonYieldType.lua,2360
 1,eaddd10d2e08ecfcb863f43641c55b01,src/engine/Component.lua,993
@@ -539,10 +539,10 @@
 1,2792a63b738c867b8b16e4e7beee56c2,src/engine/TableToString.lua,1270
 1,a6d4fa854f697a251197dd626f3eb4a4,src/engine/UIBase.lua,334
 1,7b6f9d02baad8a0cbe27d9fd058aa4bb,src/platform/CustomDebug.lua,215
-1,092c8e845eb043f09a7e5c06b144a5a6,src/platform/CustomScript.lua,387
+1,8acfcdc99449e6c0630efa8423022a00,src/platform/CustomScript.lua,448
 1,1e58cdea4c2a76172a7d24000d1629c8,src/platform/TestScript.lua,1023
-1,1c6e259dae2c4094326d68ff0451d66b,src/platform/win32.lua,2537
-1,5cee477487d0b48a3674c21136849d69,src/scene/battle/BattleConst.lua,1810
+1,ec8185315da5bbcb615cb9b4fab784a1,src/platform/win32.lua,2575
+1,0cf58d976643564b74689bb8fb35211e,src/scene/battle/BattleConst.lua,1814
 1,0d1c7e7f1bbf55e8c6cf57aa737ba3da,src/scene/battle/SBattle.lua,2902
 1,e7c34db256348036b47d665e6834ffc0,src/scene/battle/data/DAMahjong.lua,3749
 1,132980636359e48b6bf74ee605edea5c,src/scene/battle/data/DAPlayers.lua,1544

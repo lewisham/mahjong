@@ -35,7 +35,7 @@ end
 
 function AppBase:play(co)
     self:loadConfig()
-    self:createScene("STools")
+    if device:isWindows() then self:createScene("STools") end
     self:createScene("SSystem")
     self:createScene("SAutoUpdate"):play(co, GetChannelInfo().url)
     self:runScene("SBattle")

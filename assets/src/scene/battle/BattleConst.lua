@@ -34,8 +34,8 @@ MAHJONG_DIR =
 local logic_id = 0
 
 function AllocTile(suit, rank)
-    suit = 2
-    rank = 5
+    --suit = 2
+    --rank = 5
     logic_id = logic_id + 1
     local unit = {}
     unit.id = logic_id
