@@ -23,6 +23,8 @@
               <Image Name="turn_pos_3.png" />
               <Image Name="turn_pos_bg.png" />
               <Image Name="zhuomianditu012.png" />
+              <Image Name="btn_return.png" />
+              <Image Name="btn_setting.png" />
             </Folder>
             <Folder Name="dice">
               <Image Name="dice_1.png" />

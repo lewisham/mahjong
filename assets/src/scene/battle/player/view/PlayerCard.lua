@@ -8,7 +8,7 @@ local PlayerCard = class("PlayerCard", NodeBase)
 
 function PlayerCard:onCreate()
     self:set("tiles", {})
-    self:findGameObject("UIBattleScene"):addChild(self, 1)
+    self:findGameObject("UITable"):addChild(self, 1)
 end
 
 function PlayerCard:getDisplayDir()

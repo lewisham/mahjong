@@ -19,7 +19,7 @@ function SBattle:run()
 end
 
 function SBattle:play(co)
-    self:createGameObject("UIBattleScene")
+    self:createGameObject("UITable")
     self:balckOut(co, 0.1)
     PlayMusic("sound/bgm_battle1.mp3")
     self:createGameObject("UIDecision")
@@ -34,6 +34,7 @@ end
 
 -- 发牌
 function SBattle:deal(co)
+    self:findGameObject("UITable"):onTurn(self:findGameObject("DAPlayers"):getDealer())
     self:createGameObject("UIDice"):play(co, 1)
     self:findGameObject("UIWallTile"):deal(co)
     self:removeGameObject("UIDice")
@@ -55,19 +56,19 @@ function SBattle:loop(co)
             break
         end
         local player = self:findGameObject("DAPlayers"):getPlayer(idx)
-        self:findGameObject("UIBattleScene"):onTurn(player)
+        self:findGameObject("UITable"):onTurn(player)
         card = player:play(co)
         while card do
             local jumper = self:findGameObject("DAPlayers"):afterDiscard(idx, card)
             if jumper == nil then break end
             cnt = jumper:decision(co, card)
             if cnt == 2 then
-                self:findGameObject("UIBattleScene"):onTurn(jumper)
+                self:findGameObject("UITable"):onTurn(jumper)
                 player:getComponent("DropCard"):removeCurrent()
                 card = jumper:doPong(co, card)
                 idx = jumper:get("seat")
             elseif cnt >= 3 then
-                self:findGameObject("UIBattleScene"):onTurn(jumper)
+                self:findGameObject("UITable"):onTurn(jumper)
                 player:getComponent("DropCard"):removeCurrent()
                 card = jumper:doMingKong(co, card)
                 idx = jumper:get("seat")

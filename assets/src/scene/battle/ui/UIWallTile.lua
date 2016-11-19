@@ -7,7 +7,7 @@
 local UIWallTile = class("UIWallTile", NodeBase)
 
 function UIWallTile:onCreate()
-    self:findGameObject("UIBattleScene"):addChild(self)
+    self:findGameObject("UITable"):addChild(self)
     self:set("tiles", {})
     local tb = {1, 4, 3, 2}
     for _, dir in ipairs(tb) do

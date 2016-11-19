@@ -78,7 +78,8 @@ function DAMahjong:roll1()
     local s2 = math.random(1, 6)
     local max = math.max(s1, s2)
     local min = math.min(s1, s2)
-    local dirs = {1, 4, 3, 2, 1, 4}
+    local dirs = {1, 4, 3, 2, 1, 4, 3, 2, 1, 4, 3, 2}
+    max = max + self:findGameObject("DAPlayers"):get("dealer") - 1
     local dir = dirs[max]
     local sub = min
     local pos = (dir - 1) * MAHJONG_COUNT / 4 + 2 * sub

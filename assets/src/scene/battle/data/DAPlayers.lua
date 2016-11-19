@@ -33,6 +33,11 @@ function DAPlayers:getPlayer(seat)
     return self:get("player_list")[seat]
 end
 
+-- 庄家
+function DAPlayers:getDealer()
+    return self:get("player_list")[self:get("dealer")]
+end
+
 function DAPlayers:sortTiles()
     for _, val in ipairs(self:get("player_list")) do
         val:getComponent("PlayerCard"):sort()

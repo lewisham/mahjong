@@ -7,7 +7,7 @@
 local PongCard = class("PongCard", NodeBase)
 
 function PongCard:onCreate(seat)
-    self:findGameObject("UIBattleScene"):addChild(self, 0)
+    self:findGameObject("UITable"):addChild(self, 0)
     self:set("pong_card", {})
     self:initPos()
 end

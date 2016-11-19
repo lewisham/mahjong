@@ -2,6 +2,7 @@
 Release.win32/
 Debug.win32/
 obj/
+studio/
 /runtime-src/proj.android/obj
 *.so
 *.dll

@@ -7,7 +7,7 @@
 local DropCard = class("DropCard", NodeBase)
 
 function DropCard:onCreate(seat)
-    self:findGameObject("UIBattleScene"):addChild(self)
+    self:findGameObject("UITable"):addChild(self)
     self:set("drop_card", {})
     self:initPos()
 end
