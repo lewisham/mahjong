@@ -35,12 +35,9 @@ end
 
 function AppBase:play(co)
     self:loadConfig()
-    --self:createScene("STools")
-    --self:createScene("SSystem")
-	--self:createScene("SNetWork")
-    --self:createScene("SAutoUpdate"):play(co, GetChannelInfo().url)
-    --self:runScene("SMainHome")
-    --PulishToCurrent()
+    self:createScene("STools")
+    self:createScene("SSystem")
+    self:createScene("SAutoUpdate"):play(co, GetChannelInfo().url)
     self:runScene("SBattle")
 end
 

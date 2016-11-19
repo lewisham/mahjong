@@ -10,7 +10,6 @@
           </Folder>
           <Folder Name="system">
             <Project Name="Dialog.csd" Type="Layer" />
-            <Project Name="SystemPanel.csd" Type="Layer" />
             <Project Name="Toast.csd" Type="Layer" />
           </Folder>
           <Folder Name="tools">

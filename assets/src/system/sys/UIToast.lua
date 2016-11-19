@@ -7,7 +7,7 @@
 local UIToast = class("UIToast", UIBase)
 
 function UIToast:onCreate()
-    self:loadCsb("CoreUI/System/Toast.csb", false)
+    self:loadCsb("system/system//Toast.csb", false)
     self.Node_1:setVisible(false)
     self.Node_1:setCascadeOpacityEnabled(true)
 end

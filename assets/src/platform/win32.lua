@@ -55,28 +55,29 @@ function PulishToCurrent()
     local workDir = runDosCmd("cd")[1]
     local list = {}
     local sDir = ""
+    local tb = {"CheckFileList.txt"}
+    local skips = {}
+    for _, val in ipairs(tb) do
+        skips[val] = 1
+    end
     for key, _ in io.popen('dir ' .. sDir .. ' /a-D/b/s'):lines() do
         local filename = string.match(key, ".+\\([^\\]*%.%w+)$")
-		--print(filename)
-        local path = string.sub(key, #workDir + 2)
-        local pos = #path - #filename
-        local dir = string.sub(path, 1, pos)
-        local content = FileRead(path)
-        content = EncryptFile(filename, content)
-        local md5 = content:md5() or "0bytes"
-        local size = #content
-        local path1 = string.gsub(path, "\\", "/")
-        local abcd = {1, md5, path1, size}     
-        table.insert(list, abcd)
+        if skips[filename] then
+		    print("skil file", key)
+        else
+            local path = string.sub(key, #workDir + 2)
+            local pos = #path - #filename
+            local dir = string.sub(path, 1, pos)
+            local content = FileRead(path)
+            content = EncryptFile(filename, content)
+            local md5 = content:md5() or "0bytes"
+            local size = #content
+            local path1 = string.gsub(path, "\\", "/")
+            local abcd = {1, md5, path1, size}     
+            table.insert(list, abcd)
+        end
     end
-    -- 保存文件信息
-    --SaveFileList(ASSETS_SEVER_PATH .. "CheckFileList.txt", list)
 	SaveFileList("CheckFileList.txt", list)
-    -- 保存版本号
-    --local versionId = tostring(os.time())
-    --FileWrite(ASSETS_SEVER_PATH .. "CheckVersion.txt", versionId)
-	--FileWrite(PRODUCT_PATH .. "CheckVersion.txt", versionId)
-    print("发布资源成功")
 end
 
 cc.FileUtils:getInstance():setWritablePath("../../write/")

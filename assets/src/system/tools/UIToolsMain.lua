@@ -7,12 +7,12 @@
 local UIToolsMain = class("UIToolsMain", UIBase)
 
 function UIToolsMain:onCreate()
-    self:loadCsb("CoreUI/Tools/ToolsMain.csb", true)
+    self:loadCsb("system/tools/ToolsMain.csb", true)
     self.Panel_1:onClicked(function() self:click_btn_exit() end)
 end
 
 function UIToolsMain:click_btn_publish_res()
-    self:getScene():createGameObject("SCPublish")
+    PulishToCurrent()
 end
 
 function UIToolsMain:click_btn_debug()

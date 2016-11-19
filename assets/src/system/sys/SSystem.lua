@@ -44,7 +44,6 @@ end
 function SSystem:init()
     self:getRoot():setTouchEnabled(false)
     self:createGameObject("UIToast")
-    self:createGameObject("UISystemPanel")
 end
 
 return SSystem

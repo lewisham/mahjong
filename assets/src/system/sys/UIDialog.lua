@@ -7,7 +7,7 @@
 local UIDialog = class("UIDialog", UIBase)
 
 function UIDialog:onCreate()
-    self:loadCsb("CoreUI/System/Dialog.csb", true)
+    self:loadCsb("system/system/Dialog.csb", true)
 	self:setVisible(false)
 end
 

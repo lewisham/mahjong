@@ -57,6 +57,7 @@ end
 
 -- 检查版本号
 function SCUpdateOneByOne:checkVersion(co)
+    do return false end
 	print("检测是否要更新")
     self:refreshTips("检测是否要更新")
     local location = "0"
@@ -177,7 +178,7 @@ end
 -- url请求下载
 function SCUpdateOneByOne:httpGet(url, fnCallback)
 	url = string.gsub(url, ' ', '%%20') -- 用urlencode 可能有问题，这里只改空格
-	local xhr = cc.XMLHttpRequest:new()
+    local xhr = cc.XMLHttpRequest:new()
 	xhr.responseType = cc.XMLHTTPREQUEST_RESPONSE_STRING
 	xhr:open("GET", url)
 	local ndProtected = cc.Node:create()
@@ -190,6 +191,7 @@ function SCUpdateOneByOne:httpGet(url, fnCallback)
 			--print("成功 Code:"..xhr.statusText)
 			fnCallback(true, xhr.response)
 		else -- 失败
+            print(url)
 			print("失败 xhr.readyState is:", xhr.readyState, "xhr.status is: ",xhr.status)
 			fnCallback(false, xhr.response)
 		end

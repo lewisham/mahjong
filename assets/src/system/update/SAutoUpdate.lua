@@ -8,6 +8,7 @@ local SAutoUpdate = class("SAutoUpdate", GameScene)
 
 -- 执行自动更新逻辑
 function SAutoUpdate:play(co, url)
+    url = "https://raw.githubusercontent.com/lewisham/mahjong/master/assets/"
 	self:createGameObject("UIAutoUpdate")
 	-- 不进进行自动更新
     if NOT_AUTO_UPDATE then

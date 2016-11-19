@@ -7,7 +7,7 @@
 local UIAutoUpdate = class("UIAutoUpdate", UIBase)
 
 function UIAutoUpdate:onCreate()
-    self:loadCsb("CoreUI/AutoUpdate/AutoUpdate.csb", true)
+    self:loadCsb("system/update/AutoUpdate.csb", true)
     self.loading_bar:setPercent(0)
 end
 

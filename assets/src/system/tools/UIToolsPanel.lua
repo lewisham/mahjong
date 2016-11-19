@@ -7,7 +7,7 @@
 local UIToolsPanel = class("UIToolsPanel", UIBase)
 
 function UIToolsPanel:onCreate()
-    self:loadCsb("CoreUI/Tools/ToolsPanel.csb", false)
+    self:loadCsb("system/tools/ToolsPanel.csb", false)
 end
 
 function UIToolsPanel:click_btn_tools()
