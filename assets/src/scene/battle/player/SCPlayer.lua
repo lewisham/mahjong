@@ -60,8 +60,20 @@ end
 function SCPlayer:afterDraw(co)
     --self:getComponent("AI"):isHu(self:get("tiles"))
     local card = self:get("draw_card")
-    for _, pai in ipairs(self:get("ting")) do
-        if card.pai == pai then
+    local ting = self:get("ting")
+    if #ting > 0 then
+        local hu = false
+        if card.rascal == 1 then
+            hu = true
+        else
+            for _, pai in ipairs(self:get("ting")) do
+                if card.pai == pai then
+                    hu = true
+                    break
+                end
+            end
+        end
+        if hu then
             self:playSound("hu" .. math.random(1, 3))
             self:findGameObject("DAMahjong"):set("hu", true)
             return

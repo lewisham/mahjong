@@ -26,7 +26,7 @@ function DAPlayers:createPlayers()
         self:get("player_list")[i] = go
         go:set("robot", true)
     end
-    self:getPlayer():set("robot", false)
+    --self:getPlayer():set("robot", false)
 end
 
 function DAPlayers:findPlayer(seat)
