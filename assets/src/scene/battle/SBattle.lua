@@ -85,7 +85,11 @@ function SBattle:loop(co)
 end
 
 function SBattle:gameEnd(co)
-    WaitForSeconds(co, 3.0)
+    local list = self:findGameObject("DAPlayers"):get("player_list")
+    for _, val in ipairs(list) do
+        val:getComponent("PlayerCard"):showCards()
+    end
+    WaitForSeconds(co, 6.0)
     local app = self:getAppBase()
 	app:posScene()
     app:pushScene("SBattle")

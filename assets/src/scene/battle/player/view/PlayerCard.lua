@@ -181,6 +181,7 @@ function PlayerCard:onSelectTile(sender)
     sender:setPositionY(y)
 end
 
+-- 排序牌
 function PlayerCard:sort()
     local dir = self:getDisplayDir()
     if dir ~= MAHJONG_DIR.down then return end
@@ -195,6 +196,7 @@ function PlayerCard:sort()
     end
 end
 
+-- 调整牌
 function PlayerCard:adjust()
     local dir = self:getDisplayDir()
     local data = self:getGameObject():get("tiles")
@@ -230,6 +232,63 @@ function PlayerCard:adjust()
         end
         self:sortAllChildren()
     end
+end
+
+function PlayerCard:showCards()
+    local dir = self:getGameObject():get("display_dir")
+    local dirs = {2, 1, 2, 3}
+    if dir == MAHJONG_DIR.down then return end
+    self:removeAllChildren()
+    local dir = self:getDisplayDir()
+    local data = self:getGameObject():get("tiles")
+    local list = self:getShowCardPos(#data)
+    SortDisplayMahjong(data)
+    for key, card in ipairs(data) do
+        local pos = list[key]
+        local filename = string.format("ui/battle/mahjong/p%ss%s_%s.png", dirs[dir], card.suit, card.rank)
+        local sprite = cc.Sprite:create(filename)
+        self:addChild(sprite, 900 - pos.y)
+        sprite:setPosition(pos)
+    end
+end
+
+function PlayerCard:getShowCardPos(cnt)
+    local orginX, orginY, offx, offy = 512, 200, 36, -42
+    local dir = self:getDisplayDir()
+    local horizon = true
+    if dir == MAHJONG_DIR.down then
+        orginX, orginY, offx, offy = 640 - 240, 220, 36, 42
+    elseif dir == MAHJONG_DIR.up then
+        orginX, orginY, offx, offy = 640 + 245, 650, -36, -42
+        orginX = 640 + (cnt - 1) * math.abs(offx) / 2
+    elseif dir == MAHJONG_DIR.right then
+        horizon = false
+        orginX, orginY, offx, offy = 640 + 510, 380 + 140, -49, -26
+        orginY = 400 + (cnt - 1) * math.abs(offy) / 2
+    elseif dir == MAHJONG_DIR.left then
+        horizon = false
+        orginX, orginY, offx, offy = 640 - 510, 380 - 140, 49, 26
+        orginY = 400 - (cnt - 1) * math.abs(offy) / 2
+    end
+    local x = orginX
+    local y = orginY
+    local tb = {}
+    if horizon then
+        x = orginX
+        for i = 1, 16 do
+            table.insert(tb, cc.p(x, y))
+            x = x + offx
+        end
+        y = y + offy
+    else
+       y = orginY
+        for i = 1, 16 do
+            table.insert(tb, cc.p(x, y))
+            y = y + offy
+        end
+        x = x + offx
+    end
+    return tb
 end
 
 return PlayerCard
