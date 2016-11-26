@@ -21,6 +21,7 @@ function UIBattelSetting:click_btn_auto()
     local cur = self:findGameObject("DAPlayers"):getPlayer():get("robot")
     cur = not cur
     self:findGameObject("DAPlayers"):getPlayer():set("robot", cur)
+    --SafeRemoveNode(self)
 end
 
 function UIBattelSetting:click_btn_sound()

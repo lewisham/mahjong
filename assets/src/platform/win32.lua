@@ -50,6 +50,10 @@ if cc.FileUtils:getInstance():isFileExist("src/platform/CustomScript.lua") then
     require("src.platform.CustomScript")
 end
 
+function RunTestScript()
+    ReloadLuaModule("TestScript")
+end
+
 -- 单文件更新方式
 function PulishToCurrent()
     local workDir = runDosCmd("cd")[1]

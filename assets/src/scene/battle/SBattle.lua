@@ -85,6 +85,7 @@ function SBattle:loop(co)
 end
 
 function SBattle:gameEnd(co)
+    WaitForSeconds(co, 3.0)
     local app = self:getAppBase()
 	app:posScene()
     app:pushScene("SBattle")

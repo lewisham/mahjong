@@ -5,30 +5,43 @@ local function swap(tb, idx1, idx2)
 end
 
 local count = 0
-local function permutation(tb, length, index)
+local function permutation(tb, length, index, deep)
     if index == length then
         count = count + 1
-        --print("conut" .. count, unpack(tb))
+        print("conut" .. count, unpack(tb))
         return
     end
     for i = index, length do
-        swap(tb, index, i)
-        permutation(tb, length, index + 1)
-        swap(tb, index, i)
+        if tb[1] == 1 then
+            swap(tb, index, i)
+            permutation(tb, length, index + 1, deep + 1)
+            swap(tb, index, i)
+        end
     end
 
 end
 
+local function test1()
+    local tb = {1, 2, 3, 4, 5, 6}
+    permutation(tb, #tb, 1, 1)
+end
+
+test1()
+
 local queen = {}
 local array = {1, 2, 3, 4, 5}
 
+local count = 0
 local function comb(s, n, m, top)
-    if s > n + 1 then return end
+    if s == n + 1 then return end
     if top == m + 1 then
-        print("conut", unpack(queen))
+        count = count + 1
+        print("conut", count, unpack(queen))
         return
     end
-    queen[top] = array[s]
+    --if array[s].used then return end
+    queen[top] = array[s].idx
+    array[s].used = true
     top = top + 1
     comb(s + 1, n, m, top)
     top = top - 1
@@ -40,10 +53,11 @@ local function test()
     local cnt = 13
     array = {}
     for i = 1, cnt do
-        table.insert(array, i)
+        local unit = {}
+        unit.idx = i
+        unit.used = false
+        table.insert(array, unit)
     end
     comb(1, cnt, 3, 1)
     print("cost time", os.clock() - t1)
 end
-
---test()

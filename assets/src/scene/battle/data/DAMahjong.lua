@@ -8,6 +8,7 @@ local DAMahjong = class("DAMahjong", GameObject)
 
 function DAMahjong:init()
     self:initMahjong()
+    self:set("hu", false)
     self:set("current_idx", 0)
     self:set("last_idx", 0)
     self:set("player_tiles", {{}, {}, {}, {}})
@@ -69,6 +70,7 @@ function DAMahjong:getLast()
 end
 
 function DAMahjong:isOver()
+    if self:get("hu") then return true end
     return self:get("current_idx") == self:get("end_idx")
 end
 

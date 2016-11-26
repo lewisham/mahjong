@@ -15,10 +15,12 @@ function SCPlayer:init(seat, dir)
     self:set("peng_cnt", 0)
     self:set("gang_cnt", 0)
     self:set("display_dir", dir)
+    self:set("ting", {})
     self:createComponent("PlayerCard")
     self:createComponent("DropCard")
     self:createComponent("PongCard")
     self:createComponent("AI")
+    self:createComponent("Ting")
 
     do return end
     local tb = {}
@@ -56,7 +58,15 @@ function SCPlayer:doDrawLast(co)
 end
 
 function SCPlayer:afterDraw(co)
+    --self:getComponent("AI"):isHu(self:get("tiles"))
     local card = self:get("draw_card")
+    for _, pai in ipairs(self:get("ting")) do
+        if card.pai == pai then
+            self:playSound("hu" .. math.random(1, 3))
+            self:findGameObject("DAMahjong"):set("hu", true)
+            return
+        end
+    end
     local cnt = self:calcCardCount(card)
     if cnt > 3 and self:decision(co, card) then
         return self:doAnKong(co, card)
@@ -97,6 +107,11 @@ function SCPlayer:discard(co)
     WaitForSeconds(co, 0.3)
     self:getComponent("PlayerCard"):adjust()
     card.drop_from = self:get("seat")
+
+    -- 
+    local ting = self:getComponent("Ting"):calcTing(self:get("tiles"))
+    Log(ting)
+    self:set("ting", ting)
     return card
 end
 

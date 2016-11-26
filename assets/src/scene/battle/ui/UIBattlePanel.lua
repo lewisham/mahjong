@@ -11,6 +11,9 @@ function UIBattlePanel:onCreate()
 end
 
 function UIBattlePanel:click_btn_restart()
+    --ReloadLuaModule("Ting")
+    --require("Ting"):test()
+    --do return end
     self:getScene():createGameObject("UIBattleSetting") 
 end
 

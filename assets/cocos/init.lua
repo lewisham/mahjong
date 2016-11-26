@@ -29,7 +29,7 @@ require "cocos.cocos2d.functions"
 __G__TRACKBACK__ = function(msg)
     local msg = debug.traceback(msg, 3)
 	print(msg)
-    MsgBox(msg)
+    --MsgBox(msg)
     return msg
 end
 

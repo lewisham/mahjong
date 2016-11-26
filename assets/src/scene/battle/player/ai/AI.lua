@@ -46,7 +46,56 @@ function AI:init()
     self:set("s1", tb)
 end
 
-function AI:calc(cards)
+function AI:changeToCnt(str)
+    local start = string.byte(str, 1, 1)
+    local tb = {}
+    for i = 1, #str do
+        local val = string.byte(str, i, i) - start
+        table.insert(tb, val)
+    end
+    return tb
+end
+
+function AI:match(tb, str)
+    local types = self:changeToCnt(str)
+    local cnt = #types
+    local idx = self:get("idx")
+    for i = 1, cnt do
+        if tb[idx + i - 1] == nil then return false end
+    end
+    local start = tb[idx].logic_rank
+    local bMatch = true
+    for i = 1, cnt do
+        local card = tb[idx + i - 1]
+        if card.logic_rank ~= start + types[i] then
+            bMatch = false
+            break
+        end
+    end
+    return bMatch
+end
+
+function AI:filter(tb, str)
+    if not self:match(tb, str) then return false end
+    local unit = {}
+    for _, val in ipairs(s_values) do
+        if str == val.key then
+            unit = val
+            break
+        end
+    end
+    local cnt = #str
+    local idx = self:get("idx")
+    for i = 1, cnt do
+        local card = tb[idx + i - 1]
+        card.value = math.max(card.value, unit.values[i])
+    end
+    local offset = unit.offset == 0 and cnt or unit.offset
+    self:modify("idx", offset)
+    return true
+end
+
+function AI:calcWeight(cards)
     local suits = {{}, {}, {}, {}}
     for _, val in ipairs(cards) do
         val.value = 0
@@ -55,7 +104,7 @@ function AI:calc(cards)
     end
     for _, tb in ipairs(suits) do
         self:set("idx", 1)
-        SortLogicMahjong(tb)
+        SortAABB(tb)
         while true do
             local idx = self:get("idx")
             local card = tb[idx]
@@ -84,12 +133,12 @@ end
 
 -- 打牌ai
 function AI:discard(cards)
-    self:calc(cards) 
+    self:calcWeight(cards) 
     return cards[1]
 end
 
 function AI:pong(co, cards, card)
-    self:calc(cards)
+    self:calcWeight(cards)
     local cnt = 0
     for _, val in ipairs(cards) do
         if IsTileEqual(val, card) then
@@ -100,67 +149,6 @@ function AI:pong(co, cards, card)
     end
     WaitForSeconds(co, 0.1)
     return cnt
-end
-
-function AI:changeToCnt(str)
-    local start = string.byte(str, 1, 1)
-    local tb = {}
-    for i = 1, #str do
-        local val = string.byte(str, i, i) - start
-        table.insert(tb, val)
-    end
-    return tb
-end
-
-function AI:filter(tb, str)
-    local types = self:changeToCnt(str)
-    local cnt = #types
-    local idx = self:get("idx")
-    for i = 1, cnt do
-        if tb[idx + i - 1] == nil then return end
-    end
-    local start = tb[idx].logic_rank
-    local bFind = true
-    for i = 1, cnt do
-        local card = tb[idx + i - 1]
-        if card.logic_rank ~= start + types[i] then
-            bFind = false
-            break
-        end
-    end
-    if not bFind then return end
-    local unit = {}
-    for _, val in ipairs(s_values) do
-        if str == val.key then
-            unit = val
-            break
-        end
-    end
-    for i = 1, cnt do
-        local card = tb[idx + i - 1]
-        card.value = math.max(card.value, unit.values[i])
-    end
-    local offset = unit.offset == 0 and cnt or unit.offset
-    self:modify("idx", offset)
-    return true
-end
-
-function AI:test()
-    local ai = AI.new()
-    local ranks = {2, 3, 3, 3, 3, 5}
-    local tb = {}
-    for _, val in ipairs(ranks) do
-        table.insert(tb, {logic_rank = val})
-    end
-    for key, _ in pairs(s_values) do
-        print(key)
-    end
-    ai:set("idx", 1)
-    if ai:filter(tb, "abbbbc") then
-        print("success")
-    else
-        print("faild")
-    end
 end
 
 return AI

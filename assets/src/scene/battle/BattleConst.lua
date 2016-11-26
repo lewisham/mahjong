@@ -32,12 +32,19 @@ MAHJONG_DIR =
 }
 
 local logic_id = 0
+local suit_map = {0, 9, 18, 27}
+-- 1-9为万
+-- 10-18为筒
+-- 19-27为条
+-- 28-35为字
+
 
 function AllocTile(suit, rank)
     --suit = 2
     --rank = 5
     logic_id = logic_id + 1
     local unit = {}
+    unit.pai = suit_map[suit] + rank
     unit.id = logic_id
     unit.idx = 100
     unit.suit = suit
@@ -57,12 +64,29 @@ function IsSuit(card)
     return card.logic_suit == 1 or card.logic_suit == 2 or card.logic_suit == 3
 end
 
-function SortLogicMahjong(tb)
-    local func = MakeSortRule(function(a, b) return a.rascal > b.rascal end,
-                              function(a, b) return a.logic_suit < b.logic_suit end,
-                              function(a, b) return a.logic_rank < b.logic_rank end)
+-- aaabbbcc排序
+function SortAABB(tb)
+    table.sort(tb, function(a, b) return a.logic_rank < b.logic_rank end)
+end
+
+-- aaabbcc排序
+function SortAAABBC(tb)
+    --local tb = {{rank = 1}, {rank = 2}, {rank = 2}, {rank = 1}, {rank = 3}, {rank = 3}, {rank = 3}}
+    local list = {}
+    for _, val in ipairs(tb) do
+        local cnt = list[val.rank] or 0
+        cnt = cnt + 1
+        list[val.rank] = cnt
+        val.weight = 100
+    end
+    for _, val in ipairs(tb) do
+        val.weight = 100 + list[val.rank]
+    end
+    local func = MakeSortRule(function(a, b) return a.weight > b.weight end,
+                              function(a, b) return a.rank < b.rank end)
     table.sort(tb, func)
 end
+
 
 function SortDisplayMahjong(tb)
     local func = MakeSortRule(function(a, b) return a.rascal > b.rascal end,
