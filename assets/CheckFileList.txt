@@ -560,7 +560,7 @@
 1,b0c6234b19a779dba75a3b5197ad1a37,src/scene/battle/data/DAMahjong.lua,3907
 1,6fe83c748a771b6795e4aa7a7f7b2303,src/scene/battle/data/DAPlayers.lua,1739
 1,960496ebc90d310af892a1ed3eebb19b,src/scene/battle/player/SCPlayer.lua,6920
-1,fca9fe85d57b9b95d2cbb01ba2dba8e8,src/scene/battle/player/ai/AI.lua,4644
+1,e27fe2779dfe061caed20cd5cb29da53,src/scene/battle/player/ai/AI.lua,4646
 1,d566be5b6d0c9fbda8badb34439df04a,src/scene/battle/player/ai/Ting.lua,6013
 1,1353dc4e9dedea1b9a305ec640026f0e,src/scene/battle/player/view/DropCard.lua,2527
 1,d59ee57ecc6df89f39ed57b1f822490c,src/scene/battle/player/view/PlayerCard.lua,9360
